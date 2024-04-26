@@ -1,0 +1,24 @@
+pipeline:
+  config:
+    fail-fast: true
+    verbose: true
+  concurrent:
+    Job11:
+      context: .
+      run: echo "This is job11"
+    Job12:
+      context: .
+      run: echo "This is job12"
+    Job13:
+      context: .
+      run: echo "This is job13"
+    Job14:
+      context: .
+      run: echo "This is job14"
+  Job2:
+    context: .
+    run: ./test.sh
+  Job3:
+    context: .
+    run: echo "This is job2"
+
