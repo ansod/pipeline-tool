@@ -7,8 +7,6 @@
 
 :white_check_mark: - Simple yaml representation of pipeline.
 
-:white_check_mark: - Simple yaml representation of pipeline.
-
 :white_check_mark: - Use Cron for simple scheduling of pipeline runs.
 
 ## Usage
