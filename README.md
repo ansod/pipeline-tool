@@ -11,16 +11,28 @@
 
 ## Usage
 
-### Run a pipeline
+Clone the repo, install the required packages listed in requirements.txt and copy the _pipeline.py_ file in to your project.
+
+### Run a pipeline from the terminal
 
 ```python
 python3 pipeline.py -f pipeline.yml
 ```
 
+### Run a pipeline from a python script
+
+```python
+from pipeline import Pipeline
+
+if __name__ == '__main__':
+    p = Pipeline('workflow', spec='pipeline.yml')
+    p.run()
+    p.print_summary()
+```
+
 ### Schedule a pipeline run
 
-1. Edit Crontab with `crontab -e`.
-2. Add cronjob to Crontab.
-   - `min hour day(month) month day(week) python3 /path/to/pipeline-tool/pipeline.py -f /path/to/pipeline/file.yml`.
-   - Example: `0 12 * * * python3 /path/to/pipeline-tool/pipeline.py -f /path/to/pipeline/file.yml`.
-        - This will run the pipeline at 12am each day of the week.
+Example, run a pipeline at 12am every day. Add the following as a cronjob by editing crontab with `crontab -e`.
+```bash
+0 12 * * * python3 /path/to/pipeline-tool/pipeline.py -f /path/to/pipeline/file.yml
+```

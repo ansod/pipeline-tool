@@ -2,22 +2,22 @@ pipeline:
   config:
     fail-fast: true
   Job1:
-    context: ./tests/
+    context: ./tests
     run: ./sleep.sh 4
   concurrent:
     Job21:
-      context: .
+      context: ./tests
       run: ./sleep.sh 1
     Job22:
-      context: ./tests/
+      context: ./tests
       run: ./sleep.sh 8
     Job23:
-      context: ./tests/
+      context: ./tests
       run: ./sleep.sh 3
     Job24:
-      context: ./tests/
+      context: ./tests
       run: ./sleep.sh 7
   Job3:
-    context: ./tests/
+    context: ./tests
     run: ./sleep.sh 2
 

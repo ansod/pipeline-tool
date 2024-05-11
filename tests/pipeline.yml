@@ -1,7 +1,7 @@
 pipeline:
   config:
     fail-fast: true
-    verbose: true
+    #verbose: true
   concurrent:
     Job11:
       context: .
@@ -16,7 +16,7 @@ pipeline:
       context: .
       run: echo "This is job14"
   Job2:
-    context: .
+    context: ./tests
     run: ./test.sh
   Job3:
     context: .
