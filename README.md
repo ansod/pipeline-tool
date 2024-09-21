@@ -27,7 +27,7 @@ Example pipelines exists in examples/ directory.
 from pipeline import Pipeline
 
 if __name__ == '__main__':
-    p = Pipeline('workflow', spec='pipeline.yml')
+    p = Pipeline('workflow', spec='your_pipeline.yml')
     p.run()
     p.print_summary()
 ```
@@ -37,12 +37,12 @@ if __name__ == '__main__':
 Example, run a pipeline at 12am every day. Add the following as a cronjob by editing crontab with `crontab -e`.
 
 ```bash
-0 12 * * * python3 /path/to/pipeline-tool/pipeline.py -f /path/to/pipeline/file.yml
+0 12 * * * python3 /path/to/pipeline-tool/pipeline.py -f /path/to/your_pipeline.yml
 ```
 
 ## YAML configuration
 
-A pipeline is specified in a _YAML_ file (usually .yml or .yaml).
+A pipeline is specified in a _YAML_ file.
 Examples pipelines exists in examples/.
 
 Job types:
@@ -53,4 +53,4 @@ Job types:
 Possible configuration (added under _config_ object in pipeline file):
 
 - `fail-fast: true|false`: whether jobs should be canceled if a previous job has failed.
-- `verbose: true|false`: whether stdout and stderr should be displayed for each job.
+- `verbose: true|false`: whether job output should be displayed for each job.

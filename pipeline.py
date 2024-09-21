@@ -16,17 +16,11 @@ class Result(Enum):
     NA = 2
 
 
-class PipelineGraph:
-    # TODO: Implement this
-    pass
-
-
 class Summary:
-    def __init__(self, result: Result, time: float, stdout: str = '', stderr: str = '') -> None:
+    def __init__(self, result: Result, time: float, output: str = '') -> None:
         self.result = result
         self.time = time
-        self.stdout = stdout
-        self.stderr = stderr
+        self.output = output
 
 
 class PipelineObject:
@@ -62,18 +56,17 @@ class Job(PipelineObject):
             shell=True,
             cwd=self.ctx,
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             universal_newlines=True)
         t_fin = time.time()
 
         if verbose:
             print(f'#### {self.name} output:')
             print(f'## Stdout:\n{ret.stdout}')
-            print(f'## Stderr:\n{ret.stderr}')
 
         res = Result.SUCCESS if ret.returncode == 0 else Result.ERROR
 
-        self.summary = Summary(res, t_fin - t_start, ret.stdout, ret.stderr)
+        self.summary = Summary(res, t_fin - t_start, ret.stdout)
         if ret_queue:
             ret_queue.put((i, self.summary))
 
@@ -200,13 +193,10 @@ class Pipeline:
                 item.print_summary(spaces=1)
         print("===============")
 
-    def get_graph(self) -> PipelineGraph:
-        pass
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-                                    prog='Pipeline-tool', 
+                                    prog='Pipeline-tool',
                                     description='Helps you run custom pipelines locally.')
     parser.add_argument('-f', '--file', help='the yaml file specifying your pipeline.')
     args = parser.parse_args()

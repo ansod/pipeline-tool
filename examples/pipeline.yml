@@ -1,7 +1,7 @@
 pipeline:
   config:
-    fail-fast: true
-    #verbose: true
+    fail-fast: false
+    verbose: true
   concurrent:
     Job11:
       context: .
