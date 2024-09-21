@@ -16,7 +16,7 @@ pipeline:
       context: .
       run: echo "This is job14"
   Job2:
-    context: ./tests
+    context: ./examples
     run: ./test.sh
   Job3:
     context: .
